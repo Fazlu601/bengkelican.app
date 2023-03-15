@@ -4,6 +4,8 @@ use App\Http\Controllers\KaryawanController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\TransactionController;
+use App\Models\Transaction;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
@@ -30,3 +32,13 @@ Route::resource('/data/pelanggan', PelangganController::class);
 Route::resource('/data/karyawan', KaryawanController::class);
 Route::resource('/data/barang', ProductController::class);
 Route::get('/data/service', [ProductController::class, 'serviceIndex']);
+
+
+Route::resource('/transaksi/pemesanan_barang', TransactionController::class);
+
+
+Route::get('/supplier', function() {
+        return view('supplier.index', [
+            "data" => Transaction::all()
+        ]);
+});

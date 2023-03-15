@@ -19,7 +19,11 @@ class LoginController extends Controller
         ]);
         if ( Auth::attempt($credential) ) {
             $request->session()->regenerate();
-            return redirect()->intended('/')->with('success', 'Login Berhasil!');
+            if(Auth()->User()->is_supplier) {
+                return redirect()->intended('/supplier')->with('success', 'Login Berhasil!');
+            }else {
+                return redirect()->intended('/')->with('success', 'Login Berhasil!');
+            }
         }
         return back()->with('fail', 'Anda Gagal Login');
     }
