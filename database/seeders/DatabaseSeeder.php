@@ -8,6 +8,7 @@ use App\Models\Pelanggan;
 use App\Models\Karyawan;
 use App\Models\Product;
 use App\Models\Shop_info;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -31,6 +32,14 @@ class DatabaseSeeder extends Seeder
             "name" => "Fazlu Rachman",
             "address" => "Kenali Asam Bawah",
             "password" => Hash::make('123')
+        ]);
+
+        User::create([
+            "username" => "Daffa01",
+            "name" => "Daffa Darmawan",
+            "address" => "Bolong",
+            "password" => Hash::make('123'),
+            "is_supplier" => 1
         ]);
 
         Pelanggan::create([
@@ -57,6 +66,13 @@ class DatabaseSeeder extends Seeder
             "price" => 620000,
             "type" => "service",
             "stock" => null
+        ]);
+
+        Transaction::create([
+            "type" => "service",
+            "total" => 1200000,
+            "supplier" => "Aulia",
+            "plat" => "BH 1802 DRE",
         ]);
     }
 }
