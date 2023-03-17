@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Pelanggan;
 use App\Models\Karyawan;
 use App\Models\Product;
+use App\Models\Shop_info;
 use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
@@ -19,6 +20,11 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // \App\Models\User::factory(10)->create();
+
+        Shop_info::create([
+            "name" => "BENGKEL MOBIL ICAN",
+            "address" => "Jl. Abdul Chatab RT.20 Kel.Pasir"
+        ]);
 
         User::create([
             "username" => "Fazlu601",
@@ -47,10 +53,10 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Product::create(  [
-            "name" => "Velg Merah Avanza 2011",
-            "price" => 300000,
-            "type" => "sparepart",
-            "stock" => 8
+            "name" => "Cat Bamper Depan & Belakang",
+            "price" => 620000,
+            "type" => "service",
+            "stock" => null
         ]);
     }
 }
