@@ -13,9 +13,9 @@
                     <li><a class="dropdown-item" href="#!">Activity Log</a></li>
                     <li><hr class="dropdown-divider" /></li>
                     <li>
-                        <form action="/logout" method="POST">
+                        <form action="/logout" id="logout" method="POST">
                             @csrf
-                            <button type="submit" onclick="return confirm('Yakin ingin keluar?')" class="dropdown-item">Logout</button>
+                            <button type="button" onclick="logout()" class="dropdown-item">Logout</button>
                         </form>
                     </li>
                 </ul>
@@ -24,3 +24,21 @@
     </div>
     <!-- Navbar-->
 </nav>
+
+<script>
+        
+    function logout() {
+        swal.fire({
+        title: "Apakah Anda yakin ingin keluar?",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Ya, keluar!",
+        cancelButtonText: "Batal",
+        closeOnConfirm: false
+        }).then( (result) => {
+            if(result.isConfirmed)
+            document.getElementById('logout').submit();
+        })
+    }
+</script>

@@ -35,6 +35,9 @@ Route::get('/data/service', [ProductController::class, 'serviceIndex']);
 
 
 Route::resource('/transaksi/pemesanan_barang', TransactionController::class);
+Route::delete('/transaksi/pemesanan_barang/{id}', [TransactionController::class, 'destroy']);
+Route::get('/transaksi/pemesanan_barang/{id}/show', [TransactionController::class, 'show']);
+Route::put('/transaksi/pemesanan_barang/verifikasi/{id}', [TransactionController::class, 'verifikasi']);
 
 
 Route::get('/supplier', function() {

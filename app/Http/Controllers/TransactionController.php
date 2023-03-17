@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TransactionController extends Controller
@@ -15,7 +16,8 @@ class TransactionController extends Controller
     public function index()
     {
         return view('transaksi.pemesanan_barang', [
-            "data" => Transaction::all()
+            "data" => Transaction::all(),
+            "supplier" => User::all()
         ]);
     }
 
@@ -37,7 +39,15 @@ class TransactionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "supplier" => "required",
+            "type" => "required",
+            "plat" => "required",
+            "total" => "required|numeric"
+        ]);
+
+        Transaction::create($validateData);
+        return back()->with('success', 'Pemesanan Barang Berhasil Dibuat!');
     }
 
     /**
@@ -46,9 +56,11 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show(Transaction $transaction)
+    public function show($id)
     {
-        //
+        return view('supplier.detailPemesanan', [
+            'data' => Transaction::where('id', $id)->first()
+        ]);
     }
 
     /**
@@ -80,8 +92,20 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy($id)
     {
-        //
+        Transaction::destroy($id);
+
+        return back()->with('success', 'Pemesanan Barang Berhasil Dihapus!');
+    }
+
+    public function verifikasi (Request $request, $id) {
+            $validateData = $request->validate([
+                "kondisi" => "required"
+            ]);
+
+            Transaction::where('id', $id)
+                    ->update($validateData);
+                return redirect('/supplier')->with('success', 'Status Berhasil Diverifikasi!');
     }
 }
