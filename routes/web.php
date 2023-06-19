@@ -1,14 +1,16 @@
 <?php
 
-use App\Http\Controllers\KaryawanController;
-use App\Http\Controllers\LoginController;
-use App\Http\Controllers\PelangganController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\TransactionController;
-use App\Http\Controllers\UserController;
+use App\Models\Product;
 use App\Models\Transaction;
+use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\KaryawanController;
+use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +34,16 @@ Route::post('/logout', [LoginController::class, 'destroy']);
 Route::resource('/data/pelanggan', PelangganController::class);
 Route::resource('/data/karyawan', KaryawanController::class);
 Route::resource('/data/barang', ProductController::class);
-Route::get('/data/service', [ProductController::class, 'serviceIndex']);
+Route::get('/data/service', function () {
+    return view('data.service', [
+        "data" => Product::where('type', 'service')->get()
+    ]);
+});
+Route::post('/data/service', function (Request $request) {
+  
+    Product::create($request->all());
+    return back()->with('success', 'Barang Baru Berhasil Ditambahkan!');
+});
 
 
 Route::resource('/transaksi/pemesanan_barang', TransactionController::class);

@@ -37,7 +37,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        Product::create($request->all());
+        return back()->with('success', 'Barang Baru Berhasil Ditambahkan!');
     }
 
     /**
@@ -80,16 +82,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $produk
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        dd($id);
     }
 
 
-    public function serviceIndex(Product $product)
-    {
-        return view('data.service', [
-            "data" => Product::where('type', 'service')->get()
-        ]);
-    }
 }

@@ -1,15 +1,6 @@
 @extends('layout.main')
 
 @section('container')
-@if (session('success'))
-    <script>
-        Swal.fire({
-            icon: 'success',
-            title: 'Berhasil!',
-            text: '{{ session('success') }}',
-        });
-    </script>
-@endif
 
     <div class="container-fluid px-4">
         <h1 class="mt-4">Pemesanan Barang</h1>
