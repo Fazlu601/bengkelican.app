@@ -11,16 +11,16 @@
     </script>
 @endif
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Barang Terima</h1>
+        <h1 class="mt-4">Dashboard Supplier</h1>
         <ol class="breadcrumb mb-4">
-            <li class="breadcrumb-item active">Pemesanan Barang</li>
+            <li class="breadcrumb-item active">Dashboard</li>
         </ol>
         
         <div class="card mb-4">
             <div class="card-header">
             </div>
             <div class="card-body">
-                <table class="table table-bordered" id="datatablesSimple">
+                <table class="table table-bordered">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -40,7 +40,7 @@
                                 <td>{{ $pb->total}}</td>
                                 <td>{{ $pb->kondisi}}</td>
                                 <td>
-                                    <a href="/transaksi/pemesanan_barang/{{ $pb->id }}/show" class="btn btn-sm btn-success">
+                                    <a href="/transaksi/pemesanan_barang/{{ Crypt::encrypt($pb->id) }}/show" class="btn btn-sm btn-success">
                                         <span class="fas fa-info"></span>
                                     </a>
                                         <!-- Button trigger modal -->

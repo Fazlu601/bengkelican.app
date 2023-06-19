@@ -4,6 +4,9 @@
 <div class="container-fluid px-4">
     <h1 class="mt-4">Pelanggan</h1>
     <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            <a href="/" class="text-decoration-none text-dark">Dashboard</a>
+        </li>
         <li class="breadcrumb-item active">Pelanggan</li>
     </ol>
     
@@ -12,7 +15,7 @@
             <button class="btn btn-sm btn-success"><i class="fas fa-plus me-1"></i> Tambah Pelanggan</button>
         </div>
         <div class="card-body">
-            <table class="table table-bordered" id="datatablesSimple">
+            <table class="table table-bordered">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -31,13 +34,13 @@
                             <td>{{ $p->telephone }}</td>
                             <td>
                                 <a href="" class="btn btn-sm btn-success">
-                                    <span class="fas fa-whatsapp"></span>
+                                    <span class="fas fa-info"></span>
                                 </a>
                                 <a href="" class="btn btn-sm btn-warning">
-                                    <span class="fas fa-brands fa-whatsapp"></span>
+                                    <span class="fas fa-edit"></span>
                                 </a>
                                 <a href="" class="btn btn-sm btn-danger">
-                                    <span class="fas fa-brands fa-whatsapp"></span>
+                                    <span class="fas fa-trash"></span>
                                 </a>
                             </td>
                         </tr>

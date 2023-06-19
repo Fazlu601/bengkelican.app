@@ -12,12 +12,12 @@
 @endif
 
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Pemesanan Barang</h1>
+        <h1 class="mt-4">Detail Pemesanan</h1>
         <ol class="breadcrumb mb-4">
             <li class="breadcrumb-item active">
-                <a href="/" class="text-decoration-none text-dark">Dashboard</a>
+                <a href="/" class="text-decoration-none text-dark">Home</a>
             </li>
-            <li class="breadcrumb-item active">Pemesanan Barang</li>
+            <li class="breadcrumb-item active">Detail Pemesanan</li>
         </ol>
         
         <div class="card mb-4">
@@ -29,32 +29,34 @@
                 <table class="table table-bordered">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Tanggal</th>
-                            <th>Supplier</th>
-                            <th>Total</th>
-                            <th>Aksi</th>
+                            <th>Tipe</th>
+                            <th>Plat</th>
+                            <th>Nama Supplier</th>
+                            <th>Kondisi</th>
+                            <th>Waktu dipesan</th>
+                            <th>Total Biaya</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @php
-                            use Illuminate\Support\Facades\Crypt;
-                        @endphp
                         @foreach ( $data as $pb )
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
-                                <td>{{ $pb->created_at }}</td>
-                                <td>{{ $pb->supplier }}</td>
-                                <td>{{ "Rp. " . number_format($pb->total);  }}</td>
-                                <td style="width: 100px">
+                                <td>{{ $loop->type }}</td>
+                                <td>{{ $pb->plat }}</td>
+                                <td>{{ $pb->kondisi }}</td>
+                                <td>{{ $pb->created_at}}</td>
+                                <td>{{ $pb->total}}</td>
+                                <td>
                                     <div  class="d-flex w-100 justify-content-between">
-                                        <a href="/transaksi/pemesanan_barang/{{Crypt::encrypt($pb->id) }}/show" class="btn btn-sm btn-success px-3">
-                                            <span class="fas fa-info"></span>
+                                        <a href="" class="btn btn-sm btn-success">
+                                            <span class="fas fa-brand fa-whatsapp"></span>
+                                        </a>
+                                        <a href="" class="btn btn-sm btn-warning">
+                                            <span class="fas fa-edit"></span>
                                         </a>
                                         <form action="/transaksi/pemesanan_barang/{{ $pb->id }}" id="delete-transaction" method="POST" >
                                             @method('delete')
                                             @csrf
-                                            <button type="button" onClick="confirmDelete()" class="btn btn-sm btn-danger px-3 ms-3">
+                                            <button type="button" onClick="confirmDelete()" class="btn btn-sm btn-danger">
                                                 <span class="fas fa-trash"></span>
                                             </button>
                                         </form>
@@ -68,26 +70,8 @@
         </div>
     </div>
 
-    <script>
-        
-        function confirmDelete() {
-            swal.fire({
-            title: "Apakah Anda yakin ingin menghapus data ini?",
-            type: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#DD6B55",
-            confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal",
-            closeOnConfirm: false
-            }).then( (result) => {
-                if(result.isConfirmed)
-                document.getElementById('delete-transaction').submit();
-            })
-        }
-</script>
 
-
-<!-- Modal -->
+{{-- <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
@@ -113,7 +97,7 @@
                     <option value="service">service</option>
                     <option value="sparepart">spare part</option>
                 </select>
-                <label for="floatingSelect">Tipe</label>
+                <label for="floatingSelect">Supplier</label>
               </div>
             <div class="form-floating mb-3">
                 <input type="name" name="plat" class="form-control" id="floatingInput" placeholder="name@example.com">
@@ -131,5 +115,5 @@
         </form>
       </div>
     </div>
-  </div>
+  </div> --}}
 @endsection

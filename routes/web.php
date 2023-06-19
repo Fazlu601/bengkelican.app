@@ -5,6 +5,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PelangganController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\UserController;
 use App\Models\Transaction;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
@@ -45,3 +46,7 @@ Route::get('/supplier', function() {
             "data" => Transaction::all()
         ]);
 });
+
+
+Route::get('/access', [UserController::class, 'index']);
+Route::post('/access', [UserController::class, 'store']);

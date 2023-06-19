@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class TransactionController extends Controller
 {
@@ -45,7 +46,6 @@ class TransactionController extends Controller
             "plat" => "required",
             "total" => "required|numeric"
         ]);
-
         Transaction::create($validateData);
         return back()->with('success', 'Pemesanan Barang Berhasil Dibuat!');
     }
@@ -56,10 +56,11 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($encryptedID)
     {
+        $decryptedID = Crypt::decrypt($encryptedID);
         return view('supplier.detailPemesanan', [
-            'data' => Transaction::where('id', $id)->first()
+            'data' => Transaction::where('id', $decryptedID)->first()
         ]);
     }
 
