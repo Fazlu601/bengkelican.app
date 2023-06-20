@@ -29,19 +29,23 @@
                             <td>{{ $s->name }}</td>
                             <td>{{ $s->username }}</td>
                             <td>
-                                @if ($s->is_admin === 0)
+                                @if ($s->is_admin === 0 && $s->is_supplier === 0)
                                     Karyawan
+                                @elseif ($s->is_admin === 0 && $s->is_supplier === 1)
+                                    Supplier
+                                @else 
+                                    Admin
                                 @endif
                             </td>
                             <td>
                                 <a href="" class="btn btn-sm btn-success">
-                                    <span class="fas fa-whatsapp"></span>
+                                    <span class="fas fa-info"></span>
                                 </a>
                                 <a href="" class="btn btn-sm btn-warning">
-                                    <span class="fas fa-brands fa-whatsapp"></span>
+                                    <span class="fas fa-edit"></span>
                                 </a>
                                 <a href="" class="btn btn-sm btn-danger">
-                                    <span class="fas fa-brands fa-whatsapp"></span>
+                                    <span class="fas fa-trash"></span>
                                 </a>
                             </td>
                         </tr>
